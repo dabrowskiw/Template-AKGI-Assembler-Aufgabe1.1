@@ -67,10 +67,6 @@ class AssemblerTestCase(TestCase):
         self.assertEqual(0, node1.get_edge_to_weight(node1))
         self.assertEqual(2, node1.get_edge_to_weight(node2))
         self.assertEqual(1, node1.get_edge_to_weight(node3))
-        node1.add_edge_to(node1)
-        self.assertEqual(1, node1.get_edge_to_weight(node1))
-        self.assertEqual(2, node1.get_edge_to_weight(node2))
-        self.assertEqual(1, node1.get_edge_to_weight(node3))
 
     @pytest.mark.dbgnode
     def test_dbgnode_add_edge_from(self):
@@ -89,10 +85,20 @@ class AssemblerTestCase(TestCase):
         self.assertEqual(0, node1.get_edge_from_weight(node1))
         self.assertEqual(2, node1.get_edge_from_weight(node2))
         self.assertEqual(1, node1.get_edge_from_weight(node3))
-        node1.add_edge_from(node1)
-        self.assertEqual(1, node1.get_edge_from_weight(node1))
-        self.assertEqual(2, node1.get_edge_from_weight(node2))
-        self.assertEqual(1, node1.get_edge_from_weight(node3))
+
+    @pytest.mark.dbgnode
+    def test_dbgnode_add_selfedge_from(self):
+        node = DBGnode("AAA")
+        self.assertEqual(0, node.get_edge_from_weight(node))
+        node.add_edge_from(node)
+        self.assertEqual(1, node.get_edge_from_weight(node))
+
+    @pytest.mark.dbgnode
+    def test_dbgnode_add_selfedge_to(self):
+        node = DBGnode("AAA")
+        self.assertEqual(0, node.get_edge_to_weight(node))
+        node.add_edge_to(node)
+        self.assertEqual(1, node.get_edge_to_weight(node))
 
     @pytest.mark.dbgraph
     def test_dbgraph_correct(self):
