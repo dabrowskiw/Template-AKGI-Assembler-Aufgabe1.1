@@ -115,21 +115,16 @@ class AssemblerTestCase(TestCase):
             graph.add_kmers(kmers)
 
     @pytest.mark.toplevel
-    def test_read_fasta(self):
-        expected = [Read([">1", "AGTCTAC"]), Read([">2", "TCTACCG"])]
-        self.assertEqual(expected, assembler.read_fasta("data/test.fasta"))
-
-#    @pytest.mark.toplevel
-#    def test_build_graph(self):
-#        graph = assembler.build_graph("data/test.fasta", 2)
-#        self.assertEqual(8, graph.count_nodes())
-#        self.assertEqual(17, graph.count_edges())
-#        graph = assembler.build_graph("data/test.fasta", 4)
-#        self.assertEqual(6, graph.count_nodes())
-#        self.assertEqual(5, graph.count_edges())
-#        graph = assembler.build_graph("data/virus_perfectreads.fasta", 6)
-#        self.assertEqual(1581, graph.count_nodes())
-#        self.assertEqual(3644, graph.count_edges())
-#        graph = assembler.build_graph("data/virus_perfectreads.fasta", 12)
-#        self.assertEqual(2418, graph.count_nodes())
-#        self.assertEqual(2418, graph.count_edges())
+    def test_build_graph(self):
+        graph = assembler.build_graph("data/test.fasta", 2)
+        self.assertEqual(8, graph.count_nodes())
+        self.assertEqual(17, graph.count_edges())
+        graph = assembler.build_graph("data/test.fasta", 4)
+        self.assertEqual(6, graph.count_nodes())
+        self.assertEqual(5, graph.count_edges())
+        graph = assembler.build_graph("data/virus_perfectreads.fasta", 6)
+        self.assertEqual(1581, graph.count_nodes())
+        self.assertEqual(3644, graph.count_edges())
+        graph = assembler.build_graph("data/virus_perfectreads.fasta", 12)
+        self.assertEqual(2418, graph.count_nodes())
+        self.assertEqual(2418, graph.count_edges())
