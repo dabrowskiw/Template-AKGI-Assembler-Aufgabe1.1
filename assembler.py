@@ -21,7 +21,7 @@ class Read:
 
 
 class DBGnode:
-    def __init__(self, seq):
+    def __init__(self, kmer):
         pass
 
     def add_edge_to(self, eto):
